@@ -1,5 +1,23 @@
 # FT_services
 
+---
+#### 평가항목
+1. scrs폴더, set.up파일 확인
+2. 대시보드들어가서 모든 팟 확인, 각각의 dockerfile에 alpine운영체제를 설정했는지 확인
+3. kubectl get services -> type확인
+4. 192.16.99.10 -> https://192.16.99.10으로 되는지 확인하고 phpmyadmin,wordpress 접속되는지 확인, 터미널창 curl -i http://192.168.99.10-> location이 https로 나오는지 확인, 
+5. ftps서버포트 21번 확인, 파일 업로드 체크
+  - curl --ftp-ssl --insecure -T 옮길파일명 ftp://192.168.99.10/ --user hyunkim:password
+  - kubectl exec pod이름 -it -- sh -> home/hyunkim안에 파일있는지 체크
+  - curl --ftp-ssl --insecure -o 만들어줄파일이름 ftp://192.168.99.10/옮길파일명 --user hyunkim:password
+6. wordpress댓글달고 dashboard에서 mysql지원다음에 다시 댓글달려있는지 확인
+7. influxdb지우고 grafana dashboard에 모든 항목들이 있는지 체크
+8. ftps컨테이너 프로세스 고장낸 후 팟을 지우고 정상작동하는지 확인 
+  - kubectl exec pod/팟이름 -- ps // 실행중인 프로세스
+  - kubectl exec pod/팟이름 —- pkill 고장낼 프로세스설정
+---
+
+- kubectl get all -> kubectl describe pod(wordpress)
 - https://kubernetes.io/ko/docs/reference/glossary/?fundamental=true ->용어집
 -------------------------------------------------------------------------------
 ### Minikube는 가벼운 쿠버네티스 구현체이며, 로컬 머신에 VM을 만들고 하나의 노드로 구성된 간단한 클러스터를 생성한다. Minikube는 리눅스, 맥, 그리고 윈도우 시스템에서 구동이 가능하다. Minikube CLI는 클러스터에 대해 시작, 중지, 상태 조회 및 삭제 등의 기본적인 부트스트래핑(bootstrapping) 기능을 제공한다.
@@ -112,6 +130,9 @@
 - telegraf를 통한 influxdb에 데이터(metrics) 전송.
 - Go 언어로 쓰여진 agent로 주로 수집, 처리, 메트릭에 쓰기 위해 사용된다. 
 - 서버의 상태 cpu, memory,disk, db 등등 다양한 정보들을 influxdb로 보내 grafana에 그래프를 그릴 수 있도록 설치하였다.
+---
+###### supervisor
+- Container 내에서 필요한 프로그램을 실행하고 관리하기 위해
 ---
 - apiVersion: 오브젝트를 생성하기 위해 사용하고 있는 쿠버네티스API버전이 어떤것인지
 - kind: 어떤 종류의 오브젝트를 생성하고자 하는지

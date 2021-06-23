@@ -20,8 +20,8 @@ RUN apk update && apk add openrc vsftpd openssl telegraf --no-cache --quiet && \
 RUN openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=KR/ST=Seoul/O=42Seoul/OU=Gun/CN=localhost" -keyout /etc/vsftpd/ftps.key -out /etc/vsftpd/ftps.crt
 
 # make id
-RUN adduser -D -g 'jiylee' jiylee && \
-	echo "jiylee:password" | chpasswd
+RUN adduser -D -g 'hyunkim' hyunkim && \
+	echo "hyunkim:password" | chpasswd
 
 EXPOSE 21 21000
 
