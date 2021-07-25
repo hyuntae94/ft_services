@@ -16,42 +16,42 @@
   - kubectl exec pod/팟이름 -- ps // 실행중인 프로세스
   - kubectl exec pod/팟이름 —- pkill 고장낼 프로세스설정
 ---
-
-- kubectl get all -> kubectl describe pod(wordpress)
+# Minikube?? #
+##### 가벼운 쿠버네티스 구현체이며, 로컬 머신에 VM을 만들고 하나의 노드로 구성된 간단한 클러스터를 생성한다. Minikube는 리눅스, 맥, 그리고 윈도우 시스템에서 구동이 가능하다. Minikube CLI는 클러스터에 대해 시작, 중지, 상태 조회 및 삭제 등의 기본적인 부트스트래핑(bootstrapping) 기능을 제공한다.
 - https://kubernetes.io/ko/docs/reference/glossary/?fundamental=true ->용어집
----
-### Minikube는 가벼운 쿠버네티스 구현체이며, 로컬 머신에 VM을 만들고 하나의 노드로 구성된 간단한 클러스터를 생성한다. Minikube는 리눅스, 맥, 그리고 윈도우 시스템에서 구동이 가능하다. Minikube CLI는 클러스터에 대해 시작, 중지, 상태 조회 및 삭제 등의 기본적인 부트스트래핑(bootstrapping) 기능을 제공한다.
-- minikube start --driver=virtualbox(virtualbox로 실행하기)
-- minikube dashboard -> 대시보드 열기
-- minikube status -> 상태확인
-- minikube ip -> ip확인
-- minikube stop -> 종료
-- minikube delete -> 삭제
+
+명령어|내용
+--|--
+minikube start --driver=virtualbox | virtualbox로 실행
+minikube dashboard | 대시보드 열기 
+minikube status | 상태확인
+minikube ip | ip확인
+minikube stop | 종료
+minikube delete | 삭제
 ---
 ### Kubectl은 쿠버네티스 클러스터를 제어하기 위한 커맨드 라인 도구이다. 
-- kubectl [command] [TYPE] [NAME] [flags]
-- command: 하나 이상의 리소스에서 수행하려는 동작을 지정한다. 예: create, get, describe, delete
-- kubectl delete service hello-node(hello-node 라는 서비스 삭제)
-- kubectl delete deploy hello-node(hello-node 라는 디플로먼트 삭제)
-- TYPE
-1. pods(po)
-- kubectl get pod(type) pod1(name)
-- kubectl get pods(type) pod1(name)
-- kubectl get po(type) pod1(name)
-2. configmaps(cm)
-3. endpoints(ep)
-4. persistenVolumeClaims(pvc)
-5. secrets
-6. services(svc)
-7. deployments(deploy)
-8. replicasets(rs)
-- NAME: 리소스 이름을 지정한다. 이름은 대소문자를 구분한다. 이름을 생략하면, 모든 리소스에 대한 세부 사항이 표시된다
-- flags: 선택적 플래그를 지정한다. 예를 들어, -s 또는 --server 플래그를 사용하여 쿠버네티스 API 서버의 주소와 포트를 지정할 수 있다.  --type=LoadBalancer(클러스터 밖의 서비스로 노출), --port=8080
-- minikube에서 LoadBalancer타입은 minikube service 명령어를 통해서 해당 서비스 접근 가능
+- `kubectl [command] [TYPE] [NAME] [flags]`
+  - Command: 하나 이상의 리소스에서 수행하려는 동작을 지정한다. 예: create, get, describe, delete
+    - kubectl delete service hello-node(hello-node 라는 서비스 삭제)
+    - kubectl delete deploy hello-node(hello-node 라는 디플로먼트 삭제)
+  - Type
+    1. pods(po)
+      - kubectl get pod(type) pod1(name)
+      - kubectl get pods(type) pod1(name)
+      - kubectl get po(type) pod1(name)
+    2. configmaps(cm)
+    3. endpoints(ep)
+    4. persistenVolumeClaims(pvc)
+    5. secrets
+    6. services(svc)
+    7. deployments(deploy)
+    8. replicasets(rs)
+  - Name: 리소스 이름을 지정한다. 이름은 대소문자를 구분한다. 이름을 생략하면, 모든 리소스에 대한 세부 사항이 표시된다
+  - Flags: 선택적 플래그를 지정한다. 예를 들어, -s 또는 --server 플래그를 사용하여 쿠버네티스 API 서버의 주소와 포트를 지정할 수 있다.  --type=LoadBalancer(클러스터 밖의 서비스로 노출), --port=8080
+---
 - minikube addons list : 애드온 목록 확인
- 
-  minikube addons enable [NAME] -> 활성화
-  minikube addons disable [NAME] -> 비활성화
+  - minikube addons enable [NAME] -> 활성화
+  - minikube addons disable [NAME] -> 비활성화
 ---
 - 클러스터 전체적인 이미지(https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
 ---
